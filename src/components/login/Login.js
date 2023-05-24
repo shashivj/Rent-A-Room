@@ -57,7 +57,6 @@ export default () => {
                             <div>
                                 <a href="#"><small className="reset">Forgot Password?</small></a>
                             </div>
-                            <Button variant="primary btn-block" type="submit">Login</Button>
                         </Form>
                     </Col>
 
