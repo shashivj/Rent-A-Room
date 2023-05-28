@@ -50,10 +50,9 @@ Actions:
       AutoDiscoverReports:
         Enabled: true
         # Use as prefix for the report files
-        ReportNamePrefix: Test
+        ReportNamePrefix: AutoDiscovered
         IncludePaths:
-          - coverage/**
-          - reports/**
+          - "**/*"
 
     # Defines the action's properties.
     Configuration:
