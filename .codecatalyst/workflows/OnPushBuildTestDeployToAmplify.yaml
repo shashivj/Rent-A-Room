@@ -8,4 +8,4 @@ Triggers:
       - main
 
 # Required - Define action configurations.
-Actions:
+Actions
