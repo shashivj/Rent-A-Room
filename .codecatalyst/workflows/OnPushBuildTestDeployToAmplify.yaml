@@ -61,5 +61,5 @@ Actions:
       Steps:
         # see info link in shell commands section for more details
         - Run: npm install
-        - Run: npm test -- --coverage --watchAll=false
+        - Run: npm test -- --coverage --watchAll=false --testResultsProcessor="jest-junit"
 
