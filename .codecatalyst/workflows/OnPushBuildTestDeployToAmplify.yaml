@@ -50,9 +50,10 @@ Actions:
       AutoDiscoverReports:
         Enabled: true
         # Use as prefix for the report files
-        ReportNamePrefix: AutoDiscovered
+        ReportNamePrefix: Test
         IncludePaths:
-          - "**/*"
+          - coverage/**
+          - reports/**
 
     # Defines the action's properties.
     Configuration:
@@ -60,5 +61,5 @@ Actions:
       Steps:
         # see info link in shell commands section for more details
         - Run: npm install
-        - Run: npm run test
+        - Run: npm test -- --coverage --watchAll=false
 
