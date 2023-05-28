@@ -60,5 +60,6 @@ Actions:
       # Required - Steps are sequential instructions that run shell commands
       Steps:
         # see info link in shell commands section for more details
+        - Run: npm install
         - Run: npm run test
 
