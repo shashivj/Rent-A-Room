@@ -1,7 +1,7 @@
 module.exports = {
-    testEnvironment: 'node',
     roots: ['<rootDir>/'],
-    testMatch: ['<rootDir>/src/test/App.test.js'],
+    testMatch: ["<rootDir>/**/*.test.{js,jsx,ts,tsx}",
+        '<rootDir>/src/**/*.test.js'],
     moduleNameMapper: {
         "^.+\\.(css|less)$": "<rootDir>/config/cssTub.js",
         "\\.(gif|ttf|png|svg)$": "<rootDir>/config/imagesTub.js"
@@ -9,5 +9,6 @@ module.exports = {
     setupFilesAfterEnv: [
         "<rootDir>/src/setupTests.js"
     ],
-    testEnvironment: "jsdom"
+    testEnvironment: "jsdom",
+    "collectCoverage": true
 };

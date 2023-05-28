@@ -10,6 +10,7 @@
     "bootstrap": "^5.1.3",
     "formik": "^2.2.9",
     "jest": "^27.5.1",
+    "jest-junit": "^16.0.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.2.1",
     "react-dom": "^17.0.2",
@@ -21,7 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest",
+    "test": "jest --coverage",
     "coverage": "jest --coverage",
     "eject": "react-scripts eject"
   },
@@ -32,12 +33,6 @@
     ],
     "plugins": [
       "@babel/plugin-proposal-class-properties"
-    ]
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
     ]
   },
   "browserslist": {
@@ -56,19 +51,6 @@
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@testing-library/jest-dom": "^5.16.5",
     "jest-environment-jsdom": "^27.5.1"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "**/*.{ts,tsx}",
-      "!**/node_modules/**",
-      "!**/build/**",
-      "!**/definitionfiles/**",
-      "!**/*.mock.ts",
-      "!src/setupTests.ts"
-    ],
-    "coverageReporters": [
-      "lcov"
-    ]
   },
   "jest-junit": {
     "outputName": "coverage/junit.xml"
