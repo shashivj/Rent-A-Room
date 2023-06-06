@@ -65,10 +65,12 @@ Actions:
   DeploytoAWSAmplifyHosting:
     # Identifies the action. Do not modify this value.
     Identifier: codecatalyst-labs/deploy-to-amplify-hosting@v1.0.1
-    #To only run this action if the build and test stage are successful
-    DependsOn:
-      - Build
-      - Test
+    # Required; You can use an environment, AWS account connection, and role to access AWS resources.
+    Environment:
+      Connections:
+        - Role: CodeCatalystWorkflowDevelopmentRole-WebDevTeam
+          Name: DevEnvironment
+      Name: production
     # Specifies the source and/or artifacts to pass to the action as input.
     Inputs:
       # Optional
@@ -76,18 +78,17 @@ Actions:
         - WorkflowSource # This specifies that the action requires this Workflow as a source
       Artifacts:
         - build
-
-    # Required; You can use an environment, AWS account connection, and role to access AWS resources.
-    Environment:
-      Name: production
-      Connections:
-        - Name: DevEnvironment
-          Role: CodeCatalystWorkflowDevelopmentRole-WebDevTeam
-          
+    Compute:
+      Type: EC2
     # Required paramters for the action to create Amplify App
     Configuration:
-      AppStackName: RentARoom
-      AmplifyBranchName: ${WorkflowSource.BranchName}
       Wait: true
+      AWSRegion: us-east-1
+      AppStackName: RentARoom
       CreateBranch: true
-      Path: build/**/*
+      AmplifyBranchName: ${WorkflowSource.BranchName}
+      Path: build
+    #To only run this action if the build and test stage are successful
+    DependsOn:
+      - Build
+      - Test
