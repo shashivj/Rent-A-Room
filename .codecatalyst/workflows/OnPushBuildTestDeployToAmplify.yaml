@@ -23,7 +23,7 @@ Actions:
       Artifacts:
         - Name: build
           Files:
-            - build/**/*
+            - Rent-A-Room/**/*
       # Optional; Automatically discover reports for popular test frameworks
       AutoDiscoverReports:
         Enabled: true
@@ -84,7 +84,7 @@ Actions:
       AppStackName: RentARoom
       CreateBranch: true
       AmplifyBranchName: ${WorkflowSource.BranchName}
-      Path: .
+      Path: Rent-A-Room/build
     #To only run this action if the build and test stage are successful
     DependsOn:
       - Build
