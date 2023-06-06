@@ -35,12 +35,6 @@ Actions:
       Steps:
         - Run: npm install #install all dependencies from packagae.json
         - Run: npm run build #builds the app for production to the build folder
-        - Run: mkdir -p Rent-A-Room/build
-        - Run: mv build/* Rent-A-Room/build
-        - Run: pwd
-        - Run: ls
-        - Run: cd Rent-A-Room/build
-        - Run: ls
   Test:
     # Identifies the action. Do not modify this value.
     Identifier: aws/managed-test@v1.0.0
