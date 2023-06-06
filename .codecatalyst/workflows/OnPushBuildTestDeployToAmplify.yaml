@@ -23,11 +23,7 @@ Actions:
       Artifacts:
         - Name: build
           Files:
-            - Rent-A-Room/**/*
-      # Optional; Automatically discover reports for popular test frameworks
-      AutoDiscoverReports:
-        Enabled: true
-        ReportNamePrefix: Test
+            - rent-a-room/**/*
 
     # Defines the action's properties.
     Configuration:
@@ -35,6 +31,8 @@ Actions:
       Steps:
         - Run: npm install #install all dependencies from packagae.json
         - Run: npm run build #builds the app for production to the build folder
+        - Run: mkdir -p rent-a-room/build
+        - Run: mv build/* rent-a-room/build/
   Test:
     # Identifies the action. Do not modify this value.
     Identifier: aws/managed-test@v1.0.0
@@ -84,7 +82,7 @@ Actions:
       AppStackName: RentARoom
       CreateBranch: true
       AmplifyBranchName: ${WorkflowSource.BranchName}
-      Path: Rent-A-Room/build
+      Path: rent-a-room/build
     #To only run this action if the build and test stage are successful
     DependsOn:
       - Build
