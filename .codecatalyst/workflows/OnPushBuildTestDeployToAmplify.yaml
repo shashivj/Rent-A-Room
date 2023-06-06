@@ -87,7 +87,7 @@ Actions:
       AppStackName: RentARoom
       CreateBranch: true
       AmplifyBranchName: ${WorkflowSource.BranchName}
-      Path: build
+      Path: /build/**/*
     #To only run this action if the build and test stage are successful
     DependsOn:
       - Build
