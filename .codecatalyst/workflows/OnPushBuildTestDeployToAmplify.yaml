@@ -7,3 +7,29 @@ Triggers:
     Branches:
       - main
 Actions:
+  Build_2b:
+    # Identifies the action. Do not modify this value.
+    Identifier: aws/build-beta@v1.0.0
+
+    # Specifies the source and/or artifacts to pass to the action as input.
+    Inputs:
+      # Optional
+      Sources:
+        - WorkflowSource # This specifies that the action requires this Workflow as a source
+
+    Outputs:
+      Artifacts:
+        - Name: build
+          Files:
+            - rent-a-room/**/*
+
+    # Defines the action's properties.
+    Configuration:
+      # Required - Steps are sequential instructions that run shell commands
+      Steps:
+        - Run: npm install #install all dependencies from packagae.json
+        - Run: npm run build #builds the app for production to the build folder
+        - Run: mkdir -p rent-a-room/build #making a new directory to hold all artifact files
+        - Run: mv build/* rent-a-room/build/ #moving our build folder into artifacts store directory
+    Compute:
+        Type: Lambda
