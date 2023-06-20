@@ -7,7 +7,7 @@ Triggers:
     Branches:
       - main
 Actions:
-  Build_2b:
+  Build:
     # Identifies the action. Do not modify this value.
     Identifier: aws/build-beta@v1.0.0
 
@@ -33,7 +33,7 @@ Actions:
         - Run: mv build/* rent-a-room/build/ #moving our build folder into artifacts store directory
     Compute:
       Type: Lambda
-  Test_42:
+  Test:
     # Identifies the action. Do not modify this value.
     Identifier: aws/managed-test-gamma@v1.0.0
 
@@ -50,8 +50,8 @@ Actions:
         # Use as prefix for the report files
         ReportNamePrefix: Test
         IncludePaths:
-            - coverage/**
-            - reports/**
+          - coverage/**
+          - reports/**
 
     # Defines the action's properties.
     Configuration:
@@ -63,3 +63,31 @@ Actions:
         - Run: npm test -- --coverage --watchAll=false --testResultsProcessor="jest-junit"
     Compute:
       Type: Lambda
+  DeploytoAWSAmplifyHosting_6b:
+    # Identifies the action. Do not modify this value.
+    Identifier: codecatalyst-labs/deploy-to-amplify-hosting@v1.0.1
+
+    Environment:
+      Connections:
+        - Role: CodeCatalystWorkflowDevelopmentRole-APO
+          Name: 897614142286
+      Name: rajEnv
+    # Specifies the source and/or artifacts to pass to the action as input.
+    Inputs:
+      Artifacts:
+        - build
+    Compute:
+      Type: EC2
+    # Required paramters for the action to create Amplify App
+    Configuration:
+      Wait: true
+      AWSRegion: us-east-1
+      AppStackName: RentARoom
+      CreateBranch: true
+      AmplifyBranchName: ${WorkflowSource.BranchName}
+      Path: rent-a-room/build
+    #To only run this action if the build and test stage are successful
+    DependsOn:
+      - Build
+      - Test
+
